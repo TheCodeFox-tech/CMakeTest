@@ -10,3 +10,4 @@ add_executable(Main Main.c)
 enable_testing()
 
 add_test(NAME test COMMAND Main)
+set_tests_properties(Main PROPERTIES PASS_REGULAR_EXPRESSION "Hello World!")
