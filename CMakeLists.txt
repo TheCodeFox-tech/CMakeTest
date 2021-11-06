@@ -5,3 +5,8 @@ project(CMakeTest)
 
 # add the executable
 add_executable(Main Main.c)
+
+#Tests
+enable_testing()
+
+add_test(NAME test COMMAND Main)
