@@ -74,7 +74,8 @@ jobs:
         if [ "$RUNNER_OS" != "Windows" ]; then
         rm -rf build
         else
-        echo "Dummy"
+        rm ./build -recurse -force
+        fi
         git commit -m "Add artifact" -a
     
     - name: Push code
