@@ -71,15 +71,12 @@ jobs:
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
+        git pull --rebase origin "${GITHUB_REF}"
         pushd ./release
         git add -A -f
         popd
         git commit -m "Add artifact" -a
     
     - name: Push code
-      run: |
-        # Pull first
-        git pull --rebase origin "${GITHUB_REF}"
-
-        # Push after
-        git push origin "${GITHUB_REF}" 
+      run: git push origin "${GITHUB_REF}"
+        
