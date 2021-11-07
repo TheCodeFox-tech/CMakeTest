@@ -55,7 +55,7 @@ jobs:
      
     - name: Copy file
       run: |
-        cp ./build/Main ./release/Windows/Build-${{ env.RELEASE_DATE }}.exe
+        cp .\build\Release\Main.exe ./release/Windows/Build-${{ env.RELEASE_DATE }}.exe
       
     - name: Commit files
       run: |
