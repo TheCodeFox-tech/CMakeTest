@@ -13,7 +13,11 @@ jobs:
     # well on Windows or Mac.  You can convert this to a matrix build if you need
     # cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+  
+    strategy:
+        matrix:
+          os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
     - uses: actions/checkout@v2
@@ -41,13 +45,22 @@ jobs:
       run: mkdir release
      
     - name: Copy file
-      run: cp ./build/Main ./release/Build-${{ env.RELEASE_DATE }}.out
-    
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+        cp ./build/Main ./release/Linux/Build-${{ env.RELEASE_DATE }}.out
+        elif [ "$RUNNER_OS" == "Windows" ]; then
+        cp ./build/Main ./release/Windows/Build-${{ env.RELEASE_DATE }}.exe
+        elif [ "$RUNNER_OS" == "MacOS" ]; then
+        cp ./build/Main ./release/MacOS/Build-${{ env.RELEASE_DATE }}.out
+        fi
+      
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add ./release/Build-${{ env.RELEASE_DATE }}.out -f
+        git add ./release/Linux/Build-${{ env.RELEASE_DATE }}.out -f
+        git add ./release/Windows/Build-${{ env.RELEASE_DATE }}.exe -f
+        git add ./release/MacOS/Build-${{ env.RELEASE_DATE }}.out -f
         git commit -m "Add artifact" -a
         
     - name: Push changes
