@@ -49,13 +49,11 @@ jobs:
     
     - name: Create dirs
       run: |
-        if [ "$RUNNER_OS" == "Linux" ]; then
         mkdir release
         cd release
         mkdir Linux
         mkdir Windows
         mkdir MacOS
-        fi
      
     - name: Copy file
       run: |
@@ -71,12 +69,14 @@ jobs:
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git pull --rebase origin "${GITHUB_REF}"
+        
         pushd ./release
-        git add -A -f
+        git add . -f
         popd
         git commit -m "Add artifact" -a
     
     - name: Push code
-      run: git push origin "${GITHUB_REF}"
+      run: |
+        git pull --rebase origin "${GITHUB_REF}"
+        git push origin "${GITHUB_REF}"
         
