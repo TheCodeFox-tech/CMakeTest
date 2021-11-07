@@ -17,7 +17,8 @@ jobs:
   
     strategy:
         matrix:
-          os: [ubuntu-latest, windows-latest, macos-latest]
+          #os: [ubuntu-latest, windows-latest, macos-latest]
+          os: [ubuntu-latest, windows-latest]
 
     steps:
     - uses: actions/checkout@v2
@@ -53,7 +54,7 @@ jobs:
         cd release
         mkdir Linux
         mkdir Windows
-        mkdir MacOS
+        #mkdir MacOS
      
     - name: Copy file
       run: |
@@ -61,8 +62,8 @@ jobs:
         cp ./build/Main ./release/Linux/Build-${{ env.RELEASE_DATE }}.out
         elif [ "$RUNNER_OS" == "Windows" ]; then
         cp ./build/Main ./release/Windows/Build-${{ env.RELEASE_DATE }}.exe
-        elif [ "$RUNNER_OS" == "MacOS" ]; then
-        cp ./build/Main ./release/MacOS/Build-${{ env.RELEASE_DATE }}.out
+        #elif [ "$RUNNER_OS" == "MacOS" ]; then
+        #cp ./build/Main ./release/MacOS/Build-${{ env.RELEASE_DATE }}.out
         fi
       
     - name: Commit files
