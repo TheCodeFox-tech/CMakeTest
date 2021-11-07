@@ -1,0 +1,4 @@
+/home/runner/work/CMakeTest/CMakeTest/build/CMakeFiles/edit_cache.dir
+/home/runner/work/CMakeTest/CMakeTest/build/CMakeFiles/test.dir
+/home/runner/work/CMakeTest/CMakeTest/build/CMakeFiles/rebuild_cache.dir
+/home/runner/work/CMakeTest/CMakeTest/build/CMakeFiles/Main.dir
