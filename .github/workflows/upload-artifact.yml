@@ -80,9 +80,7 @@ jobs:
         else
         rm ./build -recurse -force
         fi
-        pushd ./release
-        git add . -f
-        popd
+        git add -A -f
         git commit -m "Add artifact" -a
     
     - name: Push code
