@@ -75,12 +75,14 @@ jobs:
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         
-        git add ./release/.
         if [ "$RUNNER_OS" != "Windows" ]; then
         rm -rf build
         else
         rm ./build -recurse -force
         fi
+        pushd ./release
+        git add . -f
+        popd
         git commit -m "Add artifact" -a
     
     - name: Push code
