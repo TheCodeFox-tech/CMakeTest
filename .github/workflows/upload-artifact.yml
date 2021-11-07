@@ -67,8 +67,13 @@ jobs:
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add ./release/Linux/* -f
+        if [ "$RUNNER_OS" != "Linux" ]; then
         git add ./release/Windows/* -f
+        elif [ "$RUNNER_OS" != "Linux" ]; then
+        if [ "$RUNNER_OS" == "MacOS" ]; then
         git add ./release/MacOS/* -f
+        fi
+        fi
         git commit -m "Add artifact" -a
         
     - name: Push changes
