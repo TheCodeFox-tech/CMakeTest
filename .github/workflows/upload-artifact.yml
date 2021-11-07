@@ -73,6 +73,10 @@ jobs:
         pushd ./release
         git add . -f
         popd
+        if [ "$RUNNER_OS" != "Windows" ]; then
+        rm -rf build
+        else
+        rm .\build -recurse -force
         git commit -m "Add artifact" -a
     
     - name: Push code
