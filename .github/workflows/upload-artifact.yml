@@ -41,8 +41,13 @@ jobs:
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest -C ${{env.BUILD_TYPE}}
      
-    - name: Create dir
-      run: mkdir release
+    - name: Create dirs
+      run: |
+        mkdir release
+        cd release
+        mkdir Linux
+        mkdir Windows
+        mkdir MacOS
      
     - name: Copy file
       run: |
