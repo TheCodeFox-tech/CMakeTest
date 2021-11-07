@@ -42,15 +42,20 @@ jobs:
       run: ctest -C ${{env.BUILD_TYPE}}
      
     - name: Delete old dirs
-      run: rm -rf release
+      run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
+        rm -rf release
+        fi
     
     - name: Create dirs
       run: |
+        if [ "$RUNNER_OS" == "Linux" ]; then
         mkdir release
         cd release
         mkdir Linux
         mkdir Windows
         mkdir MacOS
+        fi
      
     - name: Copy file
       run: |
